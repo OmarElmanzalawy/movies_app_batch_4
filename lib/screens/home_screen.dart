@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
         padding: EdgeInsets.only(top: 30,right: 12,left: 12),
         children: [
          MovieCard(),
-         MovieCard()
+         MovieCard(),
         ],
       )
     );
