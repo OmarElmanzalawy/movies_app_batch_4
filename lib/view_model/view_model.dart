@@ -5,6 +5,6 @@ final vm = ViewModel();
 
 class ViewModel {
 
-  List<MovieModel> movies = [];
+  ValueNotifier<List<MovieModel>> movies = ValueNotifier([]);
 
 }

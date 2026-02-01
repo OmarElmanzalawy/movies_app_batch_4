@@ -4,6 +4,10 @@ import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 import 'package:movies_app/widgets/movie_card.dart';
 
+
+//Convert variable to notifier
+//Wrap ui with valueListenableBuilder
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -30,16 +34,24 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(onPressed: (){}, icon: Icon(Icons.bedtime)),
         ],
         ),
-      body: vm.movies.isEmpty ? Center(
+      body: 
+        ValueListenableBuilder(
+          valueListenable: vm.movies,
+          builder:(context, value, child) {
+            return vm.movies.value.isEmpty ? Center(
               child: Text("No movies yet"),
-            ) : 
-        ListView.builder(
-        padding: EdgeInsets.only(top: 30,right: 12,left: 12),
-        itemCount: vm.movies.length,
-        itemBuilder: (context, index) {
-          return MovieCard();
-        },
-      )
+            )
+
+            :
+             ListView.builder(
+          padding: EdgeInsets.only(top: 30,right: 12,left: 12),
+          itemCount: vm.movies.value.length,
+          itemBuilder: (context, index) {
+            return MovieCard();
+          },
+                );
+          } 
+        )
     );
   }
 }

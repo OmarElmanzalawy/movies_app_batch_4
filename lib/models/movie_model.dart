@@ -5,7 +5,7 @@ class MovieModel {
   final String posterPath;
   final double voteAverage;
   final String releaseDate;
-  final List<int> genres;
+  final List<dynamic> genres;
 
   MovieModel({
     required this.id,

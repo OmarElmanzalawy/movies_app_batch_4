@@ -48,12 +48,14 @@ class ApiService {
             posterPath: movie["poster_path"],
             voteAverage: movie["vote_average"],
             releaseDate: movie["release_date"],
-            genres: movie["genre_ids"]
+            genres: movie["genre_ids"],
             );
         }
       ).toList();
 
-      vm.movies = models;
+      print(models.length);
+
+      vm.movies.value = models;
 
     }
 
