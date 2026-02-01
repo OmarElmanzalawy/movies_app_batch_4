@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/services/api_service.dart';
 import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 import 'package:movies_app/widgets/movie_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    ApiService.sendRequest();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
