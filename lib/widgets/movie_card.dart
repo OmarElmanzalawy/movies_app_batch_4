@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({super.key});
+  const MovieCard({super.key, required this.model});
+
+  final MovieModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +14,8 @@ class MovieCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadiusGeometry.circular(12),
-                  child: Image.asset(
-                    "assets/poster.jpeg",
+                  child: Image.network(
+                    "https://image.tmdb.org/t/p/w500/${model.posterPath}",
                     width: 80,
                     height: 120,
                     fit: BoxFit.cover,
@@ -27,7 +30,7 @@ class MovieCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: 5,
                       children: [
-                        Text("Oppenheimer",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                        Text(model.title,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                         Row(
                           children: [
                             Icon(Icons.star,color: Colors.amber,),

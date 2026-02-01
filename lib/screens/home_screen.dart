@@ -47,9 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.only(top: 30,right: 12,left: 12),
           itemCount: vm.movies.value.length,
           itemBuilder: (context, index) {
-            return MovieCard();
+            return MovieCard(
+              model: vm.movies.value[index],
+            );
           },
-                );
+        );
           } 
         )
     );
