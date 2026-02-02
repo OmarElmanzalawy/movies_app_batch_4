@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/movie_model.dart';
+import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 
 class MovieDetailScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class MovieDetailScreen extends StatelessWidget {
               left: 20,
               child: BackButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Colors.grey.shade900),
+                  backgroundColor: vm.isDarkMode.value ? WidgetStatePropertyAll(Colors.grey.shade900) : WidgetStatePropertyAll(Colors.grey.shade300),
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)))
                 ),
                 onPressed:() => Navigator.pop(context),
@@ -45,9 +46,9 @@ class MovieDetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)
+                    topRight: Radius.circular(30),
                   ),
-                  color: Colors.grey.shade900,
+                  color: vm.isDarkMode.value ? Colors.grey.shade900 : Colors.grey.shade100,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

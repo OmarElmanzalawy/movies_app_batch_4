@@ -31,7 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.bedtime)),
+          IconButton(onPressed: (){
+
+            vm.isDarkMode.value = !vm.isDarkMode.value;
+
+          }, icon: Icon(
+            vm.isDarkMode.value ? Icons.bedtime : Icons.sunny 
+            )),
         ],
         ),
       body: 

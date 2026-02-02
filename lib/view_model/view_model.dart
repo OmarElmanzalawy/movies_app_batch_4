@@ -7,4 +7,6 @@ class ViewModel {
 
   ValueNotifier<List<MovieModel>> movies = ValueNotifier([]);
 
+  ValueNotifier<bool> isDarkMode = ValueNotifier(true);
+
 }
