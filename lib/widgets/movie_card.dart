@@ -24,12 +24,15 @@ class MovieCard extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(12),
-                    child: Image.network(
-                      "https://image.tmdb.org/t/p/w500/${model.posterPath}",
-                      width: 80,
-                      height: 120,
-                      fit: BoxFit.cover,
-                      ),
+                    child: Hero(
+                      tag: model.id,
+                      child: Image.network(
+                        "https://image.tmdb.org/t/p/w500/${model.posterPath}",
+                        width: 80,
+                        height: 120,
+                        fit: BoxFit.cover,
+                        ),
+                    ),
                   ),
                   const SizedBox(width: 5,),
                   Expanded(

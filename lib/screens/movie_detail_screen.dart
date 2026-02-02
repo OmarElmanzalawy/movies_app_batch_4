@@ -15,28 +15,19 @@ class MovieDetailScreen extends StatelessWidget {
         height: size.height,
         child: Stack(
           children: [
-            Image.network(
-              "https://image.tmdb.org/t/p/w500/${model.backdropPath}",
-              // height: 400,
-              height: size.height * 0.4,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              ),
+            Hero(
+              tag: model.id,
+              child: Image.network(
+                "https://image.tmdb.org/t/p/w500/${model.backdropPath}",
+                // height: 400,
+                height: size.height * 0.4,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                ),
+            ),
             Positioned(
               top: 40,
               left: 20,
-              // child: IconButton.filled(
-              //   style: IconButton.styleFrom(
-              //     backgroundColor: Colors.grey.shade900,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadiusGeometry.circular(8)
-              //     )
-              //   ),
-              //   onPressed: (){
-              //     print("back button");
-              //     Navigator.pop(context);
-              //   }, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)
-              //   )
               child: BackButton(
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.grey.shade900),
