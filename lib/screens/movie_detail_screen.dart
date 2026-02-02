@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 
 class MovieDetailScreen extends StatelessWidget {
-  const MovieDetailScreen({super.key});
+  const MovieDetailScreen({super.key, required this.model});
+
+  final MovieModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -12,29 +15,35 @@ class MovieDetailScreen extends StatelessWidget {
         height: size.height,
         child: Stack(
           children: [
-            Image.asset(
-              "assets/backdrop.jpeg",
+            Image.network(
+              "https://image.tmdb.org/t/p/w500/${model.backdropPath}",
               // height: 400,
               height: size.height * 0.4,
               width: double.infinity,
               fit: BoxFit.cover,
               ),
             Positioned(
-              top: 30,
+              top: 40,
               left: 20,
-              child: Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Colors.black87,
-                  borderRadius: BorderRadius.circular(12)
+              // child: IconButton.filled(
+              //   style: IconButton.styleFrom(
+              //     backgroundColor: Colors.grey.shade900,
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadiusGeometry.circular(8)
+              //     )
+              //   ),
+              //   onPressed: (){
+              //     print("back button");
+              //     Navigator.pop(context);
+              //   }, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)
+              //   )
+              child: BackButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.grey.shade900),
+                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)))
                 ),
-                child: IconButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back_ios)
-                  ),
-              )
+                onPressed:() => Navigator.pop(context),
+              ),
               ),
             Positioned(
               bottom: 0,
@@ -53,7 +62,7 @@ class MovieDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Oppenheimer",
+                      model.title,
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -64,9 +73,9 @@ class MovieDetailScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.star, color: Colors.amber,),
                           const SizedBox(width: 4,),
-                          Text("7.0/10"),
+                          Text("${model.voteAverage.toStringAsFixed(1)}/10"),
                           Spacer(),
-                          Text("2026-05-12")
+                          Text(model.releaseDate)
                         ],
                       ),
                     const SizedBox(height: 20,),
@@ -79,7 +88,8 @@ class MovieDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12,),
                     Text(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      // "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      model.description,
                       style: TextStyle(fontWeight: FontWeight.w500),
                       )
                   ],

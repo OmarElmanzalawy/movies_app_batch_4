@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
 
             :
-             ListView.builder(
+          ListView.builder(
           padding: EdgeInsets.only(top: 30,right: 12,left: 12),
           itemCount: vm.movies.value.length,
           itemBuilder: (context, index) {

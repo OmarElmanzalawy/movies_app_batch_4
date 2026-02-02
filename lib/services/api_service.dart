@@ -46,6 +46,7 @@ class ApiService {
           return MovieModel(
             id: movie["id"],
             backdropPath: movie['backdrop_path'],
+            description: movie["overview"],
             title: movie["title"],
             posterPath: movie["poster_path"],
             voteAverage: movie["vote_average"],

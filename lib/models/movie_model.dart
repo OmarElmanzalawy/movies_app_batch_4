@@ -1,9 +1,10 @@
 class MovieModel {
-  
+
   final int id;
   final String backdropPath;
   final String title;
   final String posterPath;
+  final String description;
   final double voteAverage;
   final String releaseDate;
   final List<dynamic> genres;
@@ -11,6 +12,7 @@ class MovieModel {
   MovieModel({
     required this.id,
     required this.backdropPath,
+    required this.description,
     required this.title,
     required this.posterPath,
     required this.voteAverage,
