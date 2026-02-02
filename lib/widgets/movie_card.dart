@@ -34,7 +34,7 @@ class MovieCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.star,color: Colors.amber,),
-                            Text("7.0/10")
+                            Text("${model.voteAverage.toStringAsFixed(1)}/10")
                           ],
                         ),
                         const SizedBox(height: 3,),
@@ -50,7 +50,7 @@ class MovieCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.schedule_outlined,color: Colors.teal,),
-                            Text("2024-08,-18"),
+                            Text(model.releaseDate),
                             Spacer(),
                             IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border))
                           ],

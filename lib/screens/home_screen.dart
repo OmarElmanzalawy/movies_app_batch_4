@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           valueListenable: vm.movies,
           builder:(context, value, child) {
             return vm.movies.value.isEmpty ? Center(
-              child: Text("No movies yet"),
+              child: CircularProgressIndicator(),
             )
 
             :

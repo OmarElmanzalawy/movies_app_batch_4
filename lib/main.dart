@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/screens/home_screen.dart';
+import 'package:movies_app/screens/movie_detail_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,7 +13,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: HomeScreen()
+      // home: HomeScreen()
+      home: MovieDetailScreen(),
     );
   }
 }

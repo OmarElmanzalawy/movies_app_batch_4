@@ -1,4 +1,5 @@
 class MovieModel {
+  
   final int id;
   final String backdropPath;
   final String title;
