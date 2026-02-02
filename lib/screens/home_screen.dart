@@ -3,6 +3,7 @@ import 'package:movies_app/services/api_service.dart';
 import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 import 'package:movies_app/widgets/movie_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 //Convert variable to notifier
@@ -31,7 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
-          IconButton(onPressed: (){
+          IconButton(onPressed: ()async{
+            
+            final SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool("isDarkMode", !vm.isDarkMode.value);
 
             vm.isDarkMode.value = !vm.isDarkMode.value;
 

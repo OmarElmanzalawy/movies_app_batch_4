@@ -2,8 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/screens/home_screen.dart';
 import 'package:movies_app/screens/movie_detail_screen.dart';
 import 'package:movies_app/view_model/view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+
+  final bool? localDarkMode = prefs.getBool('isDarkMode');
+
+  print("fetched from local storage: $localDarkMode");
+
+  vm.isDarkMode.value = localDarkMode ?? true;
   runApp(const MainApp());
 }
 
@@ -18,7 +27,6 @@ class MainApp extends StatelessWidget {
         return MaterialApp(
         theme: vm.isDarkMode.value ? ThemeData.dark() : ThemeData.light(),
         home: HomeScreen()
-        // home: MovieDetailScreen(),
       );
       } 
     );
