@@ -43,16 +43,7 @@ class ApiService {
 
       final models = results.map(
         (movie) {
-          return MovieModel(
-            id: movie["id"],
-            backdropPath: movie['backdrop_path'],
-            description: movie["overview"],
-            title: movie["title"],
-            posterPath: movie["poster_path"],
-            voteAverage: movie["vote_average"],
-            releaseDate: movie["release_date"],
-            genres: movie["genre_ids"],
-            );
+          return MovieModel.fromMap(movie);
         }
       ).toList();
 

@@ -32,12 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
-          IconButton(onPressed: ()async{
+          IconButton(
+            onPressed: ()async{
             
-            final SharedPreferences prefs = await SharedPreferences.getInstance();
-            await prefs.setBool("isDarkMode", !vm.isDarkMode.value);
-
-            vm.isDarkMode.value = !vm.isDarkMode.value;
+              vm.toggleTheme();
 
           }, icon: Icon(
             vm.isDarkMode.value ? Icons.bedtime : Icons.sunny 

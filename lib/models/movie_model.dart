@@ -19,4 +19,18 @@ class MovieModel {
     required this.releaseDate,
     required this.genres,
   });
+
+  factory MovieModel.fromMap(Map<String,dynamic> movie){
+    return MovieModel(
+            id: movie["id"],
+            backdropPath: movie['backdrop_path'],
+            description: movie["overview"],
+            title: movie["title"],
+            posterPath: movie["poster_path"],
+            voteAverage: movie["vote_average"],
+            releaseDate: movie["release_date"],
+            genres: movie["genre_ids"],
+            );
+
+  }
 }
