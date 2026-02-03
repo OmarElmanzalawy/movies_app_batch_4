@@ -8,11 +8,15 @@ class ApiService {
 
 
   //Send request to tmdb api
- static Future<void> sendRequest()async{
+ static Future<void> sendRequest(int page)async{
+
+  try{
 
     final String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjVhMjZlY2M0MGFlNDc5OWE0NmE5ZDNiYWYwMWE1NCIsIm5iZiI6MTc2OTk0ODU1Ni4zMjgsInN1YiI6IjY5N2Y0NThjMjBjOWExZDU5MTcwZTkwYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FHO94nSCxrev5SGSM9_w4DcCJ4WpEx4urSHWMszHRt8";
 
-    final String endPoint = "https://api.themoviedb.org/3/movie/popular";
+    // final String endPoint = "https://api.themoviedb.org/3/movie/popular";
+
+    final String endPoint = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=$page";
 
     final Map<String,String> header = {
         "Authorization": "Bearer $apiKey"
@@ -49,10 +53,19 @@ class ApiService {
 
       print(models.length);
 
-      vm.movies.value = models;
+      vm.movies.value = [...vm.movies.value, ...models];
+
+      // vm.movies.value.addAll(models);
+
+      //End of request, increase current page by 1
+      vm.currentPage += 1;
 
     }
 
+  }catch(e){
+    print("error while sending api request:  ${e.toString()}");
   }
+
+ }
 
 }

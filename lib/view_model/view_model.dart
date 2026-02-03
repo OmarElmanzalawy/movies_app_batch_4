@@ -12,6 +12,8 @@ class ViewModel {
 
   ValueNotifier<bool> isDarkMode = ValueNotifier(true);
 
+  int currentPage = 1;
+
   //methods
 
   Future<void> toggleTheme()async{

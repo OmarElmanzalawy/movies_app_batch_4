@@ -19,9 +19,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
-    ApiService.sendRequest();
+    ApiService.sendRequest(vm.currentPage);
+    _scrollController.addListener((){
+      // print("listview");
+      print(_scrollController.position.pixels);
+      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+        print("Reached end of the listview");
+        ApiService.sendRequest(vm.currentPage);
+        //Send api request to fetch next page
+      }
+    });
     super.initState();
   }
 
@@ -60,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
             :
           ListView.builder(
+            controller: _scrollController,
           padding: EdgeInsets.only(top: 30,right: 12,left: 12),
           itemCount: vm.movies.value.length,
           itemBuilder: (context, index) {
