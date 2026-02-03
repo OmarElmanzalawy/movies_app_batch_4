@@ -8,6 +8,7 @@ class ViewModel {
 
   ValueNotifier<List<MovieModel>> movies = ValueNotifier([]);
 
+  List<MovieModel> favoriteMovies = [];
   ValueNotifier<bool> isDarkMode = ValueNotifier(true);
 
   //methods
@@ -18,7 +19,7 @@ class ViewModel {
             await prefs.setBool("isDarkMode", !vm.isDarkMode.value);
 
             vm.isDarkMode.value = !vm.isDarkMode.value;
-            
+
   }
 
 }

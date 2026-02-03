@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/favorites_screen.dart';
 import 'package:movies_app/services/api_service.dart';
 import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
@@ -31,7 +32,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Popular Movies"),
         centerTitle: false,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
+          IconButton(onPressed: (){
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder:(context) => FavoritesScreen(),)
+              );
+
+          }, icon: Icon(Icons.favorite_outline)),
           IconButton(
             onPressed: ()async{
             
