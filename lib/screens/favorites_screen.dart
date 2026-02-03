@@ -11,7 +11,11 @@ class FavoritesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Favorite Movies"),
       ),
-      body: vm.favoriteMovies.value.isEmpty ? 
+      body: 
+      ValueListenableBuilder(
+        valueListenable: vm.favoriteMovies,
+        builder:(context, value, child) {
+          return vm.favoriteMovies.value.isEmpty ? 
       
         Center(
           child: Text("No favorite movies added yet"),
@@ -23,7 +27,11 @@ class FavoritesScreen extends StatelessWidget {
             model: vm.favoriteMovies.value[index]
             );
         }
-        ),
+       );
+        },
+        
+        )
+    
     );
   }
 }
