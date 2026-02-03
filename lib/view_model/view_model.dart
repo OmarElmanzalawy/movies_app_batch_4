@@ -8,7 +8,8 @@ class ViewModel {
 
   ValueNotifier<List<MovieModel>> movies = ValueNotifier([]);
 
-  List<MovieModel> favoriteMovies = [];
+  ValueNotifier<List<MovieModel>> favoriteMovies = ValueNotifier([]);
+
   ValueNotifier<bool> isDarkMode = ValueNotifier(true);
 
   //methods
@@ -19,7 +20,20 @@ class ViewModel {
             await prefs.setBool("isDarkMode", !vm.isDarkMode.value);
 
             vm.isDarkMode.value = !vm.isDarkMode.value;
+  }
 
+  void addToFavorite(MovieModel model){
+    //Modify list in place
+    // doesn't return new list object
+    // favoriteMovies.value.add(model);
+
+    favoriteMovies.value = [...favoriteMovies.value, model];
+  }
+
+  void removeFromFavorite(MovieModel model){
+    // favoriteMovies.value.remove(model);
+
+    favoriteMovies.value = favoriteMovies.value.where((movie) => movie.id != model.id ).toList();
   }
 
 }

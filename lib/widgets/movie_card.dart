@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/screens/movie_detail_screen.dart';
+import 'package:movies_app/view_model/view_model.dart';
 import 'package:movies_app/widgets/category_capsule.dart';
 
 class MovieCard extends StatelessWidget {
@@ -65,7 +66,25 @@ class MovieCard extends StatelessWidget {
                               Icon(Icons.schedule_outlined,color: Colors.teal,),
                               Text(model.releaseDate),
                               Spacer(),
-                              IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border))
+                              ValueListenableBuilder(
+                                valueListenable: vm.favoriteMovies,
+                                builder: (context, value, child) {
+                                  final isPresent = vm.favoriteMovies.value.contains(model);
+                                  return IconButton(onPressed: (){
+                                  
+                                    if(isPresent){
+                                      vm.removeFromFavorite(model);
+                                    }else{
+                                      vm.addToFavorite(model);
+                                    }
+                                  
+                                  }, icon: Icon(
+                                     isPresent ? Icons.favorite : Icons.favorite_border,
+                                     color: isPresent ? Colors.red : null,
+                                     )
+                                     );
+                                }
+                              )
                             ],
                           )
                         ],

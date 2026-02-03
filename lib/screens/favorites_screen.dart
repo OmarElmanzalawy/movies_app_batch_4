@@ -11,16 +11,16 @@ class FavoritesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Favorite Movies"),
       ),
-      body: vm.favoriteMovies.isEmpty ? 
+      body: vm.favoriteMovies.value.isEmpty ? 
       
         Center(
           child: Text("No favorite movies added yet"),
         )
        : ListView.builder(
-        itemCount: vm.favoriteMovies.length,
+        itemCount: vm.favoriteMovies.value.length,
         itemBuilder: (context, index){
           return MovieCard(
-            model: vm.favoriteMovies[index]
+            model: vm.favoriteMovies.value[index]
             );
         }
         ),
