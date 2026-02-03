@@ -55,11 +55,14 @@ class MovieCard extends StatelessWidget {
                           Wrap(
                             spacing: 5,
                             runSpacing: 10,
-                            children: [
-                              CategoryCapsule(),
-                              CategoryCapsule(),
-                              CategoryCapsule(),
-                            ],
+                            // children: [
+                            //   CategoryCapsule(),
+                            //   CategoryCapsule(),
+                            //   CategoryCapsule(),
+                            // ],
+                            children: model.genres.map((id ){
+                              return CategoryCapsule(label: vm.genreMap[id] ?? "N/A");
+                            }).toList()
                           ),
                           Row(
                             children: [

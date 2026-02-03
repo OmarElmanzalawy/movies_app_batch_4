@@ -24,13 +24,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    //Fetch genres 
+    ApiService.fetchMovieGenres();
     ApiService.sendRequest(vm.currentPage);
-    _scrollController.addListener((){
+    _scrollController.addListener(()async{
       // print("listview");
       print(_scrollController.position.pixels);
       if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
         print("Reached end of the listview");
-        ApiService.sendRequest(vm.currentPage);
+         vm.isFetching.value = true;
+         await ApiService.sendRequest(vm.currentPage);
+         vm.isFetching.value = false;
         //Send api request to fetch next page
       }
     });
@@ -71,16 +75,29 @@ class _HomeScreenState extends State<HomeScreen> {
             )
 
             :
-          ListView.builder(
-            controller: _scrollController,
-          padding: EdgeInsets.only(top: 30,right: 12,left: 12),
-          itemCount: vm.movies.value.length,
-          itemBuilder: (context, index) {
-            return MovieCard(
-              model: vm.movies.value[index],
-            );
-          },
-        );
+          Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                padding: EdgeInsets.only(top: 30,right: 12,left: 12),
+                itemCount: vm.movies.value.length,
+                itemBuilder: (context, index) {
+                  return MovieCard(
+                    model: vm.movies.value[index],
+                  );
+                },
+                        ),
+                  
+              ),
+
+              ValueListenableBuilder(
+                valueListenable: vm.isFetching,
+                builder:(context, value, child) {
+                  return value ? CircularProgressIndicator() : Container();
+                },)
+            ],
+          );
           } 
         )
     );

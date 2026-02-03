@@ -73,10 +73,9 @@ class MovieDetailScreen extends StatelessWidget {
                     const SizedBox(height: 20,),
                     Wrap(
                       spacing: 12,
-                      children: [
-                        CategoryCapsule(),
-                        CategoryCapsule()
-                      ],
+                      children: model.genres.map((id ){
+                              return CategoryCapsule(label: vm.genreMap[id] ?? "N/A");
+                            }).toList()
                     ),
                     const SizedBox(height: 12,),
                     Text(

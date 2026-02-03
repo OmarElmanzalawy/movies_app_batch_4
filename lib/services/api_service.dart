@@ -45,6 +45,8 @@ class ApiService {
 
       final results = mapResponse["results"] as List;
 
+      results.removeAt(0);
+
       final models = results.map(
         (movie) {
           return MovieModel.fromMap(movie);
@@ -65,6 +67,59 @@ class ApiService {
   }catch(e){
     print("error while sending api request:  ${e.toString()}");
   }
+
+ }
+
+
+ static Future<void> fetchMovieGenres()async{
+
+    final String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjVhMjZlY2M0MGFlNDc5OWE0NmE5ZDNiYWYwMWE1NCIsIm5iZiI6MTc2OTk0ODU1Ni4zMjgsInN1YiI6IjY5N2Y0NThjMjBjOWExZDU5MTcwZTkwYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FHO94nSCxrev5SGSM9_w4DcCJ4WpEx4urSHWMszHRt8";
+
+    final String endPoint = "https://api.themoviedb.org/3/genre/movie/list";
+
+    final Map<String,String> header = {
+        "Authorization": "Bearer $apiKey"
+    };
+
+    final Uri uri = Uri.parse(endPoint);
+
+   final response = await http.get(
+      uri,
+      headers: header
+    );
+    
+    print("GENRES");
+    print(response.body);
+    print("---------------");
+
+
+    if(response.statusCode == 200){
+
+
+      //desrialization
+
+      final responseMap = jsonDecode(response.body);
+
+      final genresList = responseMap["genres"] as List;
+
+
+      Map<int,String> result = {};
+
+
+      for(var map in genresList ){
+
+        //Append to result map
+        result[map["id"]] = map["name"];
+
+      }
+
+      print("final result map:  $result");
+
+      vm.genreMap = result;
+
+
+
+    }
 
  }
 

@@ -12,6 +12,32 @@ class ViewModel {
 
   ValueNotifier<bool> isDarkMode = ValueNotifier(true);
 
+  ValueNotifier<bool> isFetching = ValueNotifier(false);
+
+  Map<int, String> genreMap = {};
+
+  /* 
+  
+  {
+
+    12: "Comedy",
+    20: "Action",
+  
+  }
+
+  */
+
+   /* 
+  FROM API
+  {
+
+    id: 12,
+    name: "Action",
+  
+  }
+
+  */
+
   int currentPage = 1;
 
   //methods
