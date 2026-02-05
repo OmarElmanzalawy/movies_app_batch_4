@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/view_model/view_model.dart';
@@ -12,7 +13,7 @@ class ApiService {
 
   try{
 
-    final String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjVhMjZlY2M0MGFlNDc5OWE0NmE5ZDNiYWYwMWE1NCIsIm5iZiI6MTc2OTk0ODU1Ni4zMjgsInN1YiI6IjY5N2Y0NThjMjBjOWExZDU5MTcwZTkwYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FHO94nSCxrev5SGSM9_w4DcCJ4WpEx4urSHWMszHRt8";
+    final String apiKey = dotenv.env["API_KEY"]!;
 
     // final String endPoint = "https://api.themoviedb.org/3/movie/popular";
 

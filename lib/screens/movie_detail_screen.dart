@@ -74,7 +74,7 @@ class MovieDetailScreen extends StatelessWidget {
                     Wrap(
                       spacing: 12,
                       children: model.genres.map((id ){
-                              return CategoryCapsule(label: vm.genreMap[id] ?? "N/A");
+                              return vm.genreMap[id] == null ? const SizedBox.shrink() : CategoryCapsule(label: vm.genreMap[id]!);
                             }).toList()
                     ),
                     const SizedBox(height: 12,),
