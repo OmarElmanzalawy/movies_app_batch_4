@@ -17,6 +17,7 @@ void main() async{
   print("fetched from local storage: $localDarkMode");
 
   vm.isDarkMode.value = localDarkMode ?? true;
+  
   runApp(const MainApp());
 }
 
